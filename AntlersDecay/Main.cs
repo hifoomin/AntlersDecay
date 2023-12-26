@@ -1,4 +1,5 @@
 using BepInEx;
+using RoR2;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -50,60 +51,117 @@ namespace AntlersDecay
             adLogger.LogDebug("color grading is " + colorGrading);
             switch (sceneName)
             {
-                case "dampcavesimple":
-                    colorGrading.saturation.value = -32f;
+                case "blackbeach":
+                    colorGrading.saturation.value = -30f;
+                    colorGrading.contrast.value = 10f;
+                    colorGrading.colorFilter.value = Color.white;
+                    break;
+                case "blackbeach2":
+                    colorGrading.saturation.value = -30f;
+                    colorGrading.contrast.value = 10f;
+                    colorGrading.colorFilter.value = Color.white;
+                    break;
+                case "golemplains":
+                    colorGrading.contrast.value = 25f;
+                    colorGrading.saturation.value = -30f;
+                    colorGrading.colorFilter.value = titanicPlainsColor;
+                    break;
+                case "golemplains2":
+                    colorGrading.contrast.value = 25f;
+                    colorGrading.saturation.value = -30f;
+                    colorGrading.colorFilter.value = titanicPlainsColor;
+                    break;
+                case "foggyswamp":
+                    colorGrading.contrast.value = 5f;
+                    colorGrading.saturation.value = -30f;
+                    colorGrading.colorFilter.value = titanicPlainsColor;
+                    break;
+                case "ancientloft":
                     colorGrading.contrast.value = 20f;
-                    colorGrading.colorFilter.value = Color.white;
-                    colorGrading.tint.value = 10f;
-                    break;
-
-                case "wispgraveyard":
-                    colorGrading.saturation.value = -20f;
-                    colorGrading.contrast.value = 15f;
-                    colorGrading.colorFilter.value = Color.white;
-                    colorGrading.tint.value = 10f;
-                    break;
-
-                case "rootjungle":
                     colorGrading.saturation.value = -10f;
-                    colorGrading.contrast.value = 20f;
-                    colorGrading.colorFilter.value = Color.white;
-                    colorGrading.tint.value = 10f;
+                    colorGrading.colorFilter.value = titanicPlainsColor;
                     break;
-
+                case "goolake":
+                    colorGrading.contrast.value = 15f;
+                    colorGrading.saturation.value = -20f;
+                    colorGrading.colorFilter.value = titanicPlainsColor;
+                    break;
+                case "wispgraveyard":
+                    colorGrading.saturation.value = -30f;
+                    colorGrading.contrast.value = 5f;
+                    colorGrading.colorFilter.value = Color.white;
+                    // colorGrading.tint.value = 10f;
+                    break;
                 case "frozenwall":
                     colorGrading.saturation.value = 0f;
                     colorGrading.contrast.value = 15f;
                     colorGrading.colorFilter.value = rallypointDeltaColor;
-                    colorGrading.tint.value = 5f;
+                    // colorGrading.tint.value = 5f;
                     break;
-
-                case "golemplains":
-                    colorGrading.contrast.value = 50f;
-                    colorGrading.saturation.value = -15f;
-                    colorGrading.colorFilter.value = titanicPlainsColor;
+                case "sulfurpools":
+                    colorGrading.saturation.value = -30f;
+                    colorGrading.contrast.value = 5f;
+                    colorGrading.colorFilter.value = Color.white;
+                    // colorGrading.tint.value = 10f;
                     break;
-
-                case "golemplains2":
-                    colorGrading.contrast.value = 50f;
-                    colorGrading.saturation.value = -15f;
-                    colorGrading.colorFilter.value = titanicPlainsColor;
+                case "dampcavesimple":
+                    colorGrading.saturation.value = -64f;
+                    colorGrading.contrast.value = 20f;
+                    colorGrading.colorFilter.value = Color.white;
+                    // colorGrading.tint.value = 10f;
+                    break;
+                case "rootjungle":
+                    colorGrading.saturation.value = -40f;
+                    colorGrading.contrast.value = 0f;
+                    colorGrading.colorFilter.value = Color.white;
+                    // colorGrading.tint.value = 10f;
+                    break;
+                case "shipgraveyard":
+                    colorGrading.saturation.value = -20f;
+                    colorGrading.contrast.value = 10f;
+                    colorGrading.colorFilter.value = Color.white;
+                    // colorGrading.tint.value = 10f;
+                    break;
+                case "skymeadow":
+                    colorGrading.saturation.value = -20f;
+                    colorGrading.contrast.value = 5f;
+                    colorGrading.colorFilter.value = Color.white;
+                    // colorGrading.tint.value = 10f;
                     break;
 
                 case "moon2":
                     var bruh = GameObject.Find("HOLDER: Gameplay Space").transform.GetChild(0).Find("Quadrant 4: Starting Temple").GetChild(0).GetChild(0).Find("FX").GetChild(0).GetComponent<PostProcessVolume>();
+                    HookLightingIntoPostProcessVolume bruh2 = GameObject.Find("HOLDER: Gameplay Space").transform.GetChild(0).Find("Quadrant 4: Starting Temple").GetChild(0).GetChild(0).Find("FX").GetChild(0).GetComponent<HookLightingIntoPostProcessVolume>();
+                    bruh2.overrideAmbientColor = new Color(0.3488f, 0.3486f, 0.4643f, 1);
+                    bruh2.overrideDirectionalColor = new Color(0.1612f, 0.1691f, 0.1626f, 1);
                     var rampFog = bruh.profile.GetSetting<RampFog>();
                     rampFog.fogColorStart.value = commencementStartColor;
                     rampFog.fogColorMid.value = commencementMidColor;
                     bruh.weight = 0.68f;
-
-                    break;
-
-                default:
                     colorGrading.saturation.value = -10f;
-                    colorGrading.contrast.value = 30f;
+                    colorGrading.contrast.value = 15f;
                     colorGrading.colorFilter.value = Color.white;
-                    colorGrading.tint.value = 5f;
+                    break;
+                case "arena":
+                    colorGrading.saturation.value = -20f;
+                    colorGrading.contrast.value = 15f;
+                    colorGrading.colorFilter.value = Color.white;
+                    break;
+                case "voidstage":
+                    colorGrading.saturation.value = -20f;
+                    colorGrading.contrast.value = 15f;
+                    colorGrading.colorFilter.value = Color.white;
+                    break;
+                case "voidraid":
+                    colorGrading.saturation.value = -20f;
+                    colorGrading.contrast.value = 15f;
+                    colorGrading.colorFilter.value = Color.white;
+                    break;
+                default:
+                    colorGrading.saturation.value = -15f;
+                    colorGrading.contrast.value = 15f;
+                    colorGrading.colorFilter.value = Color.white;
+                    // colorGrading.tint.value = 5f;
                     break;
             }
         }
@@ -128,9 +186,9 @@ namespace AntlersDecay
             pp.sharedProfile = ppProfile;
 
             colorGrading.enabled.value = true;
-            colorGrading.saturation.value = -10f;
+            colorGrading.saturation.value = -20f;
             colorGrading.contrast.value = 30f;
-            colorGrading.tint.value = 10f;
+            // colorGrading.tint.value = 10f;
             colorGrading.tonemapper.value = Tonemapper.Custom;
             colorGrading.toneCurveToeStrength.value = 1f;
             colorGrading.toneCurveToeLength.value = 0.15f;
